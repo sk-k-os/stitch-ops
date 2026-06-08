@@ -1,0 +1,151 @@
+/* ============================================================
+   ARGONAV — Colors & Type Foundations
+   Typeface: Plus Jakarta Sans  ·  Mono/labels: Space Mono
+   Palette from Brand Guidelines v1.1
+   ============================================================ */
+@import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap');
+
+
+/* ---- Webfonts (self-hosted) ----
+   Source of truth: Plus Jakarta Sans VARIABLE — two files cover the full 200–800
+   range in roman + italic with no per-weight gaps. The static OTF/TTF/WOFF/WOFF2
+   sets also ship in /fonts as a downloadable package. */
+@font-face { font-family:"Plus Jakarta Sans"; font-weight:200 800; font-style:normal; font-display:swap;
+  src:url("fonts/PlusJakartaSans-Variable.ttf") format("truetype"); }
+@font-face { font-family:"Plus Jakarta Sans"; font-weight:200 800; font-style:italic; font-display:swap;
+  src:url("fonts/PlusJakartaSans-VariableItalic.ttf") format("truetype"); }
+
+:root {
+  /* ---------- BRAND PALETTE (verbatim from guidelines) ---------- */
+  --white:           #FFFFFF;
+  --light-gray:      #F5F5F7;  /* primary light background */
+  --platinum:        #AEAEB2;  /* mid neutral, captions, hairlines on dark */
+  --charcoal-gray:   #2C2C2E;  /* primary text on light; logo color */
+  --carbon-black:    #1C1C1E;  /* deepest neutral */
+  --space-blue:      #0B1A2D;  /* primary dark background */
+  --atmosphere-blue: #7DD2F3;  /* the single accent — use sparingly */
+
+  /* ---------- EXTENDED NEUTRALS (derived, oklch-harmonized) ---------- */
+  --space-blue-900:  #060F1C;  /* deepest section / footer */
+  --space-blue-800:  #0B1A2D;  /* = Space Blue */
+  --space-blue-700:  #112439;  /* raised surface on dark */
+  --space-blue-600:  #1B3149;  /* hairline / border on dark */
+  --ink-700:         #3A3A3C;
+  --ink-500:         #636366;  /* secondary text on light */
+  --ink-300:         #C7C7CC;  /* hairline on light */
+
+  /* ---------- SEMANTIC: LIGHT SURFACES ---------- */
+  --bg:              var(--light-gray);
+  --surface:         var(--white);
+  --fg1:             var(--charcoal-gray); /* primary text */
+  --fg2:             var(--ink-500);       /* secondary text */
+  --fg3:             var(--platinum);      /* tertiary / captions */
+  --border:          #E3E3E8;
+  --accent:          var(--atmosphere-blue);
+  --accent-ink:      #2A6FA8;              /* accent that passes AA on white */
+
+  /* ---------- SEMANTIC: DARK SURFACES ---------- */
+  --d-bg:            var(--space-blue-800);
+  --d-surface:       var(--space-blue-700);
+  --d-fg1:           var(--white);
+  --d-fg2:           #9FB0C2;              /* secondary on dark */
+  --d-fg3:           #5E7186;              /* tertiary / mono labels on dark */
+  --d-border:        var(--space-blue-600);
+
+  /* ---------- TYPE FAMILY ---------- */
+  --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "Space Mono", ui-monospace, "SFMono-Regular", Menlo, monospace; /* technical / instrument labels */
+
+  /* ---------- TYPE SCALE  (guidelines: H 70/72, Sub 32/40, Body 20/26) ---------- */
+  --display:  300 clamp(48px, 7vw, 92px)/1.02 var(--font-sans);
+  --h1:       400 clamp(40px, 5vw, 70px)/1.03  var(--font-sans);
+  --h2:       400 clamp(30px, 3.4vw, 44px)/1.08 var(--font-sans);
+  --h3:       500 clamp(22px, 2vw, 28px)/1.18  var(--font-sans);
+  --subhead:  300 clamp(20px, 2vw, 32px)/1.25  var(--font-sans);
+  --body-lg:  300 20px/1.5  var(--font-sans);
+  --body:     400 16px/1.6  var(--font-sans);
+  --small:    400 13px/1.5  var(--font-sans);
+
+  /* mono "mission" label — instrument/military readout: Space Mono, uppercase, tracked, tiny */
+  --label: 400 11px/1.4 var(--font-mono);
+  --label-tracking: 0.18em;
+
+  /* ---------- RADII / SHADOW / SPACE ---------- */
+  --r-xs: 4px;  --r-sm: 8px;  --r-md: 14px;  --r-lg: 22px;  --r-pill: 999px;
+  --shadow-sm: 0 1px 2px rgba(16,16,20,.10), 0 1px 3px rgba(16,16,20,.07);
+  --shadow-md: 0 8px 24px rgba(16,16,20,.12), 0 2px 8px rgba(16,16,20,.07);
+  --shadow-lg: 0 30px 70px rgba(16,16,20,.22), 0 10px 26px rgba(16,16,20,.12);
+
+  /* ---------- GLASS SYSTEM ---------- */
+  /* on dark surfaces */
+  --glass-bg:        linear-gradient(135deg, rgba(255,255,255,.10), rgba(255,255,255,.028));
+  --glass-bg-strong: linear-gradient(135deg, rgba(66,66,72,.55), rgba(26,26,30,.42));
+  --glass-border:    rgba(255,255,255,.16);
+  --glass-hi:        inset 0 1px 0 rgba(255,255,255,.22);
+  --glass-blur:      blur(18px) saturate(1.3);
+  /* on light surfaces */
+  --glass-bg-light:     rgba(255,255,255,.62);
+  --glass-border-light: rgba(20,20,24,.08);
+  /* chrome / silver gradient for hero objects + display moments */
+  --chrome: linear-gradient(162deg,#ffffff 0%,#e9e9ee 20%,#b4b4bb 48%,#f4f4f7 66%,#9a9aa1 100%);
+
+  --space-1:4px; --space-2:8px; --space-3:12px; --space-4:16px; --space-5:24px;
+  --space-6:32px; --space-7:48px; --space-8:64px; --space-9:96px; --space-10:128px;
+  --ease: cubic-bezier(.22,.61,.36,1);
+}
+
+/* ============================================================
+   SEMANTIC ELEMENT DEFAULTS  (opt-in via .anv-type scope)
+   ============================================================ */
+.anv-type { font-family:var(--font-sans); color:var(--fg1); -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility; }
+.anv-type h1, .anv-h1 { font:var(--h1); letter-spacing:-0.015em; margin:0; }
+.anv-type h2, .anv-h2 { font:var(--h2); letter-spacing:-0.01em; margin:0; }
+.anv-type h3, .anv-h3 { font:var(--h3); letter-spacing:-0.005em; margin:0; }
+.anv-display { font:var(--display); letter-spacing:-0.02em; margin:0; }
+.anv-subhead { font:var(--subhead); color:var(--fg2); margin:0; }
+.anv-type p, .anv-body { font:var(--body-lg); color:var(--fg1); margin:0; }
+.anv-small { font:var(--small); color:var(--fg2); }
+.anv-label {
+  font:var(--label); letter-spacing:var(--label-tracking);
+  text-transform:uppercase; color:var(--fg3);
+}
+.anv-italic { font-style:italic; font-weight:300; }   /* the editorial italic accent */
+.anv-accent { color:var(--accent-ink); }
+
+/* ============================================================
+   SHARED UTILITIES — glass & chrome (used across kit, slides, cards)
+   ============================================================ */
+.anv-glass {
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--glass-border); box-shadow: var(--glass-hi), var(--shadow-md);
+  border-radius: var(--r-lg);
+}
+.anv-glass-strong { background: var(--glass-bg-strong); }
+.anv-chrome-text {
+  background: var(--chrome); -webkit-background-clip: text; background-clip: text;
+  color: transparent; -webkit-text-fill-color: transparent;
+}
+
+/* Inline Keel wordmark — used in place of the typeset word "Keel"
+   (e.g. "A [KEEL] Merchant Bank Company"). Scales with surrounding text. */
+.keel-inline{ display:inline-block; height:.82em; width:auto; vertical-align:-0.07em; margin:0 .16em; }
+
+/* ============================================================
+   FOCUS — keyboard-visible ring (brand: Atmosphere Blue).
+   Zero-specificity :where() so any component can still override.
+   Only shows for keyboard users (:focus-visible), never on mouse click.
+   Default = accent-ink (AA-legible on light); dark containers switch
+   to Atmosphere Blue so the ring reads against deep fields.
+   ============================================================ */
+:where(a, button, [role="button"], input, select, textarea, summary,
+       [tabindex]:not([tabindex="-1"])):focus-visible {
+  outline: 2px solid var(--accent-ink);
+  outline-offset: 3px;
+  border-radius: 3px;
+}
+:where(.dark, .deep, .hero, .site-footer, .cta-sec, [data-surface="dark"])
+  :where(a, button, [role="button"], input, select, textarea, summary,
+         [tabindex]:not([tabindex="-1"])):focus-visible {
+  outline-color: var(--accent);
+}

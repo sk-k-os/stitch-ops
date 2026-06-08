@@ -1,0 +1,12 @@
+{
+  "name": "stitch-ops",
+  "version": "1.0.0",
+  "description": "Stitch Ops — Enterprise Embroidery Platform",
+  "scripts": {
+    "dev": "npx serve .",
+    "deploy": "npx vercel --prod"
+  },
+  "keywords": ["embroidery", "enterprise", "merch", "logistics"],
+  "author": "Stitch Ops",
+  "license": "ISC"
+}

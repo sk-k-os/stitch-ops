@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Stitch Ops — Enterprise Embroidery</title>
+<link rel="stylesheet" href="colors_and_type.css">
+<style>
+  * { box-sizing:border-box; margin:0; padding:0; }
+  html { scroll-behavior:smooth; }
+  body {
+    font-family: var(--font-sans);
+    background: var(--light-gray);
+    color: var(--charcoal-gray);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ---------- HEADER ---------- */
+  header {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(245,245,247,0.72);
+    backdrop-filter: blur(18px) saturate(1.3);
+    -webkit-backdrop-filter: blur(18px) saturate(1.3);
+    border-bottom: 1px solid var(--border);
+    padding: 16px 48px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .logo-lockup { display:flex; align-items:center; gap:12px; }
+  .logo-lockup img { height: 28px; width: auto; }
+  .logo-lockup span {
+    font: var(--label); letter-spacing: var(--label-tracking);
+    text-transform: uppercase; color: var(--ink-500);
+  }
+  nav { display:flex; gap:32px; align-items:center; }
+  nav a {
+    font: var(--small); color: var(--charcoal-gray); text-decoration: none;
+    position: relative;
+  }
+  nav a::after {
+    content:''; position:absolute; bottom:-4px; left:0; width:0; height:1px;
+    background: var(--charcoal-gray); transition: width 0.3s var(--ease);
+  }
+  nav a:hover::after { width:100%; }
+  .btn-pill {
+    display:inline-flex; align-items:center; gap:8px;
+    padding: 10px 24px; border-radius: var(--r-pill);
+    border: 1px solid var(--charcoal-gray); background: transparent;
+    color: var(--charcoal-gray); font: var(--small); font-weight:500;
+    cursor: pointer; transition: all 0.3s var(--ease); text-decoration:none;
+  }
+  .btn-pill:hover {
+    background: var(--charcoal-gray); color: var(--white);
+  }
+  .btn-pill:hover .arrow { transform: translateX(3px); }
+  .arrow { transition: transform 0.3s var(--ease); display:inline-block; }
+
+  /* ---------- HERO ---------- */
+  .hero {
+    background: var(--space-blue);
+    padding: 120px 48px 100px;
+    position: relative; overflow: hidden;
+  }
+  .hero::before {
+    content:''; position:absolute; inset:0;
+    background:
+      radial-gradient(ellipse 80% 50% at 20% 80%, rgba(125,210,243,0.08) 0%, transparent 60%),
+      radial-gradient(ellipse 60% 40% at 80% 20%, rgba(125,210,243,0.05) 0%, transparent 50%);
+    pointer-events: none;
+  }
+  .hero-grid {
+    max-width: 1200px; margin: 0 auto;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center;
+    position: relative; z-index: 2;
+  }
+  .hero-label {
+    font: var(--label); letter-spacing: var(--label-tracking);
+    text-transform: uppercase; color: var(--platinum); margin-bottom: 24px;
+  }
+  .hero h1 {
+    font: var(--h1); color: var(--white); letter-spacing: -0.02em;
+    margin-bottom: 24px;
+  }
+  .hero h1 em {
+    font-style: italic; font-weight: 300; color: var(--atmosphere-blue);
+  }
+  .hero p {
+    font: var(--subhead); color: var(--d-fg2); max-width: 480px;
+    margin-bottom: 40px;
+  }
+  .hero-cta { display:flex; gap:16px; }
+  .btn-solid {
+    display:inline-flex; align-items:center; gap:8px;
+    padding: 14px 32px; border-radius: var(--r-pill);
+    background: var(--white); color: var(--charcoal-gray);
+    font: var(--small); font-weight:500; text-decoration:none;
+    transition: all 0.3s var(--ease);
+  }
+  .btn-solid:hover { background: var(--atmosphere-blue); color: var(--space-blue); }
+  .btn-outline-light {
+    display:inline-flex; align-items:center; gap:8px;
+    padding: 14px 32px; border-radius: var(--r-pill);
+    border: 1px solid rgba(255,255,255,0.4); background: transparent;
+    color: var(--white); font: var(--small); font-weight:500;
+    text-decoration:none; transition: all 0.3s var(--ease);
+  }
+  .btn-outline-light:hover { border-color: var(--white); background: rgba(255,255,255,0.08); }
+
+  /* orbit diagram */
+  .orbit-diagram {
+    width: 100%; aspect-ratio: 1; position: relative;
+  }
+  .orbit-diagram svg { width:100%; height:100%; }
+
+  /* ---------- HOW IT WORKS ---------- */
+  .section-light {
+    background: var(--light-gray); padding: 96px 48px;
+  }
+  .section-header {
+    max-width: 1200px; margin: 0 auto 64px;
+  }
+  .section-header .label {
+    font: var(--label); letter-spacing: var(--label-tracking);
+    text-transform: uppercase; color: var(--ink-500); margin-bottom: 16px;
+  }
+  .section-header h2 {
+    font: var(--h2); color: var(--charcoal-gray); max-width: 600px;
+  }
+  .steps-grid {
+    max-width: 1200px; margin: 0 auto;
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px;
+  }
+  .step-card {
+    background: var(--white); border-radius: var(--r-md);
+    padding: 40px 32px; border: 1px solid var(--border);
+    transition: all 0.3s var(--ease);
+  }
+  .step-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-md);
+  }
+  .step-num {
+    font: var(--label); letter-spacing: var(--label-tracking);
+    text-transform: uppercase; color: var(--atmosphere-blue);
+    margin-bottom: 20px;
+  }
+  .step-card h3 {
+    font: var(--h3); color: var(--charcoal-gray); margin-bottom: 12px;
+  }
+  .step-card p {
+    font: var(--body); color: var(--ink-500); line-height: 1.6;
+  }
+
+  /* ---------- PRODUCT GENERATOR DEMO ---------- */
+  .section-dark {
+    background: var(--carbon-black); padding: 96px 48px;
+    position: relative; overflow: hidden;
+  }
+  .section-dark::before {
+    content:''; position:absolute; inset:0;
+    background: radial-gradient(ellipse 60% 50% at 70% 30%, rgba(125,210,243,0.06) 0%, transparent 60%);
+    pointer-events: none;
+  }
+  .generator-wrap {
+    max-width: 1200px; margin: 0 auto;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 64px;
+    align-items: start; position: relative; z-index: 2;
+  }
+  .generator-left .label {
+    font: var(--label); letter-spacing: var(--label-tracking);
+    text-transform: uppercase; color: var(--platinum); margin-bottom: 16px;
+  }
+  .generator-left h2 {
+    font: var(--h2); color: var(--white); margin-bottom: 24px;
+  }
+  .generator-left h2 em {
+    font-style: italic; font-weight: 300; color: var(--atmosphere-blue);
+  }
+  .generator-left p {
+    font: var(--body-lg); color: var(--d-fg2); margin-bottom: 32px; max-width: 440px;
+  }
+  .feature-list { list-style: none; }
+  .feature-list li {
+    display: flex; align-items: flex-start; gap: 12px;
+    margin-bottom: 16px; font: var(--body); color: var(--d-fg2);
+  }
+  .feature-list li::before {
+    content:''; display: block; width: 6px; height: 6px;
+    border-radius: 50%; background: var(--atmosphere-blue);
+    margin-top: 8px; flex-shrink: 0;
+  }
+
+  /* mockup UI */
+  .mockup-ui {
+    background: var(--space-blue-700);
+    border-radius: var(--r-lg);
+    border: 1px solid var(--d-border);
+    overflow: hidden;
+  }
+  .mockup-header {
+    padding: 20px 24px; border-bottom: 1px solid var(--d-border);
+    display: flex; align-items: center; gap: 12px;
+  }
+  .mockup-dots { display:flex; gap:6px; }
+  .mockup-dots span {
+    width: 10px; height: 10px; border-radius: 50%;
+    background: var(--space-blue-600);
+  }
+  .mockup-dots span:first-child { background: #FF5F56; }
+  .mockup-dots span:nth-child(2) { background: #FFBD2E; }
+  .mockup-dots span:nth-child(3) { background: #27C93F; }
+  .mockup-title {
+    font: var(--small); color: var(--d-fg3); margin-left: auto;
+  }
+  .mockup-body { padding: 32px; }
+  .mockup-input {
+    width: 100%; padding: 16px 20px; border-radius: var(--r-sm);
+    border: 1px solid var(--d-border); background: var(--space-blue-800);
+    color: var(--white); font: var(--body); margin-bottom: 20px;
+  }
+  .mockup-input::placeholder { color: var(--d-fg3); }
+  .mockup-row {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 20px;
+  }
+  .mockup-select {
+    padding: 14px 18px; border-radius: var(--r-sm);
+    border: 1px solid var(--d-border); background: var(--space-blue-800);
+    color: var(--white); font: var(--body);
+  }
+  .mockup-preview {
+    background: var(--space-blue-800); border-radius: var(--r-sm);
+    border: 1px solid var(--d-border); padding: 40px;
+    display: flex; align-items: center; justify-content: center;
+    min-height: 220px; margin-bottom: 20px;
+    position: relative;
+  }
+  .mockup-garment {
+    width: 140px; height: 170px;
+    background: linear-gradient(145deg, #f0f0f0 0%, #e0e0e0 100%);
+    border-radius: 20px 20px 8px 8px;
+    position: relative;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+  }
+  .mockup-garment::before {
+    content:''; position: absolute; top: -12px; left: 50%; transform: translateX(-50%);
+    width: 60px; height: 24px;
+    background: linear-gradient(145deg, #f0f0f0 0%, #e0e0e0 100%);
+    border-radius: 12px 12px 0 0;
+  }
+  .mockup-logo {
+    position: absolute; top: 48px; left: 50%; transform: translateX(-50%);
+    width: 48px; height: 48px;
+    background: var(--charcoal-gray); border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font: var(--label); color: var(--white); letter-spacing: 0.1em;
+  }
+  .mockup-check {
+    display: flex; align-items: center; gap: 12px;
+    margin-bottom: 20px; font: var(--body); color: var(--d-fg2);
+  }
+  .mockup-check input {
+    width: 18px; height: 18px; accent-color: var(--atmosphere-blue);
+  }
+  .mockup-btn {
+    width: 100%; padding: 16px; border-radius: var(--r-pill);
+    background: var(--white); color: var(--charcoal-gray);
+    font: var(--small); font-weight: 500; border: none; cursor: pointer;
+    transition: all 0.3s var(--ease);
+  }
+  .mockup-btn:hover { background: var(--atmosphere-blue); color: var(--space-blue); }
+
+  /* ---------- PRICING ---------- */
+  .pricing-grid {
+    max-width: 1200px; margin: 0 auto;
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px;
+  }
+  .pricing-card {
+    background: var(--white); border-radius: var(--r-md);
+    border: 1px solid var(--border); padding: 48px 36px;
+    transition: all 0.3s var(--ease); position: relative;
+  }
+  .pricing-card:hover {
+    transform: translateY(-4px); box-shadow: var(--shadow-md);
+  }
+  .pricing-card.featured {
+    border-color: var(--charcoal-gray);
+    box-shadow: var(--shadow-md);
+  }
+  .pricing-card.featured::before {
+    content: 'MOST POPULAR';
+    position: absolute; top: -1px; left: 50%; transform: translateX(-50%);
+    background: var(--charcoal-gray); color: var(--white);
+    font: var(--label); letter-spacing: var(--label-tracking);
+    padding: 6px 20px; border-radius: 0 0 var(--r-sm) var(--r-sm);
+  }
+  .pricing-tier {
+    font: var(--h3); color: var(--charcoal-gray); margin-bottom: 8px;
+  }
+  .pricing-desc {
+    font: var(--small); color: var(--ink-500); margin-bottom: 24px;
+  }
+  .pricing-price {
+    font: var(--h1); color: var(--charcoal-gray); margin-bottom: 8px;
+  }
+  .pricing-price span {
+    font: var(--body); color: var(--ink-500); font-weight: 400;
+  }
+  .pricing-min {
+    font: var(--small); color: var(--ink-500); margin-bottom: 32px;
+    padding-bottom: 24px; border-bottom: 1px solid var(--border);
+  }
+  .pricing-features { list-style: none; }
+  .pricing-features li {
+    display: flex; align-items: flex-start; gap: 12px;
+    margin-bottom: 14px; font: var(--body); color: var(--charcoal-gray);
+  }
+  .pricing-features li::before {
+    content:''; display: block; width: 6px; height: 6px;
+    border-radius: 50%; background: var(--atmosphere-blue);
+    margin-top: 8px; flex-shrink: 0;
+  }
+
+  /* ---------- FOOTER ---------- */
+  footer {
+    background: var(--space-blue-900); padding: 64px 48px 32px;
+    border-top: 1px solid var(--d-border);
+  }
+  .footer-grid {
+    max-width: 1200px; margin: 0 auto;
+    display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px;
+  }
+  .footer-brand img { height: 24px; margin-bottom: 16px; }
+  .footer-brand p {
+    font: var(--small); color: var(--d-fg3); max-width: 280px; line-height: 1.6;
+  }
+  .footer-col h4 {
+    font: var(--label); letter-spacing: var(--label-tracking);
+    text-transform: uppercase; color: var(--platinum); margin-bottom: 20px;
+  }
+  .footer-col a {
+    display: block; font: var(--small); color: var(--d-fg2);
+    text-decoration: none; margin-bottom: 12px; transition: color 0.2s;
+  }
+  .footer-col a:hover { color: var(--atmosphere-blue); }
+  .footer-bottom {
+    max-width: 1200px; margin: 48px auto 0; padding-top: 24px;
+    border-top: 1px solid var(--d-border);
+    display: flex; justify-content: space-between;
+    font: var(--small); color: var(--d-fg3);
+  }
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width: 900px) {
+    .hero-grid, .generator-wrap { grid-template-columns: 1fr; }
+    .steps-grid { grid-template-columns: repeat(2, 1fr); }
+    .pricing-grid { grid-template-columns: 1fr; }
+    .footer-grid { grid-template-columns: 1fr 1fr; }
+    header { padding: 16px 24px; }
+    .hero, .section-light, .section-dark { padding: 64px 24px; }
+  }
+  @media (max-width: 600px) {
+    .steps-grid { grid-template-columns: 1fr; }
+    .footer-grid { grid-template-columns: 1fr; }
+    nav { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="logo-lockup">
+    <img src="assets/argonav-logo-dark-main.svg" alt="Stitch Ops">
+    <span>Stitch Ops</span>
+  </div>
+  <nav>
+    <a href="#how">How it works</a>
+    <a href="#generator">Generator</a>
+    <a href="#pricing">Pricing</a>
+    <a href="#contact" class="btn-pill">Request access <span class="arrow">→</span></a>
+  </nav>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-grid">
+    <div>
+      <div class="hero-label">Enterprise Embroidery · NYC</div>
+      <h1>Your brand.<br><em>Stitched in 24 hours.</em></h1>
+      <p>White-glove embroidery and logistics for banks, PE firms, and enterprises. We pick up your garments, digitize your design, and deliver finished pieces next day.</p>
+      <div class="hero-cta">
+        <a href="#generator" class="btn-solid">Try the generator <span class="arrow">→</span></a>
+        <a href="#pricing" class="btn-outline-light">View pricing</a>
+      </div>
+    </div>
+    <div class="orbit-diagram">
+      <svg viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- outer orbit -->
+        <circle cx="200" cy="200" r="160" stroke="#1B3149" stroke-width="1"/>
+        <!-- middle orbit -->
+        <circle cx="200" cy="200" r="110" stroke="#1B3149" stroke-width="1"/>
+        <!-- inner orbit -->
+        <circle cx="200" cy="200" r="60" stroke="#1B3149" stroke-width="1"/>
+        <!-- orbit paths -->
+        <ellipse cx="200" cy="200" rx="160" ry="40" stroke="#1B3149" stroke-width="0.5" transform="rotate(-30 200 200)"/>
+        <ellipse cx="200" cy="200" rx="160" ry="40" stroke="#1B3149" stroke-width="0.5" transform="rotate(30 200 200)"/>
+        <!-- nodes -->
+        <circle cx="200" cy="40" r="4" fill="#7DD2F3"/>
+        <circle cx="360" cy="200" r="3" fill="#5E7186"/>
+        <circle cx="200" cy="360" r="3" fill="#5E7186"/>
+        <circle cx="90" cy="110" r="3" fill="#5E7186"/>
+        <circle cx="310" cy="290" r="4" fill="#7DD2F3"/>
+        <circle cx="110" cy="310" r="3" fill="#5E7186"/>
+        <!-- center -->
+        <circle cx="200" cy="200" r="8" fill="#7DD2F3" opacity="0.3"/>
+        <circle cx="200" cy="200" r="4" fill="#7DD2F3"/>
+        <!-- connection lines -->
+        <line x1="200" y1="40" x2="310" y2="290" stroke="#1B3149" stroke-width="0.5"/>
+        <line x1="360" y1="200" x2="90" y2="110" stroke="#1B3149" stroke-width="0.5"/>
+        <line x1="200" y1="360" x2="110" y2="310" stroke="#1B3149" stroke-width="0.5"/>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="section-light" id="how">
+  <div class="section-header">
+    <div class="label">Process</div>
+    <h2>Four steps from idea to delivered.</h2>
+  </div>
+  <div class="steps-grid">
+    <div class="step-card">
+      <div class="step-num">01 / Describe</div>
+      <h3>Tell us what you want</h3>
+      <p>Describe the garment, upload a photo, or let our AI find the exact SKU. Specify logo placement: chest, sleeve, back, or custom.</p>
+    </div>
+    <div class="step-card">
+      <div class="step-num">02 / Preview</div>
+      <h3>See it before we stitch</h3>
+      <p>Our mockup engine places your logo on the garment in real time. Approve the design, request a revision, or swap the blank.</p>
+    </div>
+    <div class="step-card">
+      <div class="step-num">03 / Confirm</div>
+      <h3>One checkbox, zero friction</h3>
+      <p>Verify the mockup, confirm quantities, and check out. We handle pickup, embroidery, quality control, and delivery.</p>
+    </div>
+    <div class="step-card">
+      <div class="step-num">04 / Receive</div>
+      <h3>24-hour turnaround</h3>
+      <p>Finished pieces delivered to your office or event venue. Same-day available for Enterprise tier clients.</p>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUCT GENERATOR -->
+<section class="section-dark" id="generator">
+  <div class="generator-wrap">
+    <div class="generator-left">
+      <div class="label">Product Generator</div>
+      <h2>Describe it.<br><em>We find it. You approve it.</em></h2>
+      <p>Natural language to exact SKU. Our AI agent searches retailers, checks availability, and generates a placement preview in seconds.</p>
+      <ul class="feature-list">
+        <li>Exact SKU matching across 200+ brands</li>
+        <li>Smart alternatives when stock is low</li>
+        <li>Concierge purchasing — we buy the blank for you</li>
+        <li>Real-time 3D mockup with your logo</li>
+        <li>Revision history and version control</li>
+      </ul>
+    </div>
+    <div class="mockup-ui">
+      <div class="mockup-header">
+        <div class="mockup-dots"><span></span><span></span><span></span></div>
+        <div class="mockup-title">Stitch Ops Generator</div>
+      </div>
+      <div class="mockup-body">
+        <input type="text" class="mockup-input" placeholder="White Hermes t-shirt, logo on left sleeve..." value="White Hermes t-shirt, logo on left sleeve">
+        <div class="mockup-row">
+          <select class="mockup-select">
+            <option>Chest</option>
+            <option selected>Left Sleeve</option>
+            <option>Right Sleeve</option>
+            <option>Back</option>
+          </select>
+          <select class="mockup-select">
+            <option>Standard stitch</option>
+            <option>3D puff</option>
+            <option>Metallic thread</option>
+          </select>
+        </div>
+        <div class="mockup-preview">
+          <div class="mockup-garment">
+            <div class="mockup-logo">LOGO</div>
+          </div>
+        </div>
+        <div class="mockup-check">
+          <input type="checkbox" checked>
+          <span>I approve this mockup. Proceed to embroidery.</span>
+        </div>
+        <button class="mockup-btn">Confirm & Place Order →</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="section-light" id="pricing">
+  <div class="section-header">
+    <div class="label">Pricing</div>
+    <h2>Enterprise tiers for every volume.</h2>
+  </div>
+  <div class="pricing-grid">
+    <div class="pricing-card">
+      <div class="pricing-tier">Pilot</div>
+      <div class="pricing-desc">For first-time clients testing the service</div>
+      <div class="pricing-price">$150 <span>/ unit</span></div>
+      <div class="pricing-min">Minimum 25 units · 48hr turnaround</div>
+      <ul class="pricing-features">
+        <li>Single design setup included</li>
+        <li>1 mockup revision</li>
+        <li>Standard pickup & delivery</li>
+        <li>Email support</li>
+      </ul>
+    </div>
+    <div class="pricing-card featured">
+      <div class="pricing-tier">Retainer</div>
+      <div class="pricing-desc">For teams with recurring merch needs</div>
+      <div class="pricing-price">$95 <span>/ unit</span></div>
+      <div class="pricing-min">100 units/month · 24hr turnaround</div>
+      <ul class="pricing-features">
+        <li>3 design setups included</li>
+        <li>Unlimited mockup revisions</li>
+        <li>Priority pickup & delivery</li>
+        <li>Dedicated account manager</li>
+        <li>Concierge garment sourcing</li>
+      </ul>
+    </div>
+    <div class="pricing-card">
+      <div class="pricing-tier">Enterprise</div>
+      <div class="pricing-desc">For strategic partners and high volume</div>
+      <div class="pricing-price">$65 <span>/ unit</span></div>
+      <div class="pricing-min">500+ units/month · Same-day available</div>
+      <ul class="pricing-features">
+        <li>Unlimited design setups</li>
+        <li>White-label packaging</li>
+        <li>Same-day rush option</li>
+        <li>API access for bulk orders</li>
+        <li>Quarterly business reviews</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer id="contact">
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <img src="assets/argonav-logo-light-main.svg" alt="Stitch Ops">
+      <p>Enterprise embroidery and logistics. A Keel Merchant Bank Company. Based in New York City.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Product</h4>
+      <a href="#generator">Generator</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#">API Docs</a>
+      <a href="#">Status</a>
+    </div>
+    <div class="footer-col">
+      <h4>Company</h4>
+      <a href="#">About</a>
+      <a href="#">Careers</a>
+      <a href="#">Press</a>
+      <a href="#">Contact</a>
+    </div>
+    <div class="footer-col">
+      <h4>Legal</h4>
+      <a href="#">Privacy</a>
+      <a href="#">Terms</a>
+      <a href="#">Security</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>Stitch Ops · Operation Embroidery, NYC</span>
+    <span>Enterprise clients only. By application.</span>
+  </div>
+</footer>
+
+</body>
+</html>

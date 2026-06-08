@@ -1,0 +1,9 @@
+{
+  "version": 2,
+  "name": "stitch-ops",
+  "routes": [
+    { "src": "/assets/(.*)", "dest": "/assets/$1" },
+    { "src": "/colors_and_type.css", "dest": "/colors_and_type.css" },
+    { "src": "/(.*)", "dest": "/index.html" }
+  ]
+}
