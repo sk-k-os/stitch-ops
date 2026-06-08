@@ -460,46 +460,56 @@
   </div>
 </section>
 
-<!-- PRODUCT GENERATOR -->
-<section class="section-dark" id="generator">
-  <div class="generator-wrap">
-    <div class="generator-left">
-      <div class="label">Product Generator</div>
-      <h2>Describe it.<br><em>We find it. You approve it.</em></h2>
-      <p>Natural language to exact SKU. Our AI agent searches retailers, checks availability, and generates a placement preview in seconds.</p>
-      <ul class="feature-list">
-        <li>Exact SKU matching across 200+ brands</li>
-        <li>Smart alternatives when stock is low</li>
-        <li>Concierge purchasing — we buy the blank for you</li>
-        <li>Real-time 3D mockup with your logo</li>
-        <li>Revision history and version control</li>
-      </ul>
-    </div>
-    <div class="mockup-ui">
-      <div class="mockup-header">
-        <div class="mockup-dots"><span></span><span></span><span></span></div>
-        <div class="mockup-title">ArgoStitch Generator</div>
+<!-- DESIGN STUDIO -->
+<section class="section-dark" id="studio">
+  <div class="section-header" style="max-width: 1200px; margin: 0 auto 48px; padding: 0 48px;">
+    <div class="label">Design Studio</div>
+    <h2>Design anything.<br><em>We stitch everything.</em></h2>
+  </div>
+  <div class="studio-wrap" style="max-width: 1200px; margin: 0 auto; padding: 0 48px; display: grid; grid-template-columns: 1fr 1fr; gap: 48px;">
+    <div class="studio-controls">
+      <div style="background: var(--space-blue-700); border-radius: var(--r-lg); border: 1px solid var(--d-border); padding: 32px; margin-bottom: 24px;">
+        <div class="input-group" style="margin-bottom: 20px;">
+          <label style="display: block; font: var(--label); letter-spacing: var(--label-tracking); text-transform: uppercase; color: var(--d-fg3); margin-bottom: 10px;">Describe your product</label>
+          <textarea id="studio-input" style="width: 100%; padding: 14px 18px; border-radius: var(--r-sm); border: 1px solid var(--d-border); background: var(--space-blue-800); color: var(--white); font: var(--body); min-height: 80px; resize: vertical;" placeholder="White Alo hoodie, our logo on the chest, size L...">White Alo hoodie, our logo on the chest, size L</textarea>
+        </div>
+        <div id="studio-detected" style="display: flex; flex-wrap: wrap; gap: 8px;">
+          <span style="padding: 6px 14px; border-radius: var(--r-pill); background: rgba(125,210,243,0.1); border: 1px solid rgba(125,210,243,0.3); font: var(--small); color: var(--atmosphere-blue);">Hoodie</span>
+          <span style="padding: 6px 14px; border-radius: var(--r-pill); background: rgba(125,210,243,0.1); border: 1px solid rgba(125,210,243,0.3); font: var(--small); color: var(--atmosphere-blue);">White</span>
+          <span style="padding: 6px 14px; border-radius: var(--r-pill); background: rgba(125,210,243,0.1); border: 1px solid rgba(125,210,243,0.3); font: var(--small); color: var(--atmosphere-blue);">Chest</span>
+          <span style="padding: 6px 14px; border-radius: var(--r-pill); background: rgba(125,210,243,0.1); border: 1px solid rgba(125,210,243,0.3); font: var(--small); color: var(--atmosphere-blue);">Size L</span>
+        </div>
       </div>
-      <div class="mockup-body">
-        <input type="text" class="mockup-input" id="generator-input" placeholder="White Hermes t-shirt, logo on left sleeve..." value="White Hermes t-shirt, logo on left sleeve">
-        <div class="mockup-row">
-          <div class="mockup-detected" id="placement-detected">Placement: <span>Left Sleeve</span></div>
-          <select class="mockup-select">
-            <option>Standard stitch</option>
-            <option>3D puff</option>
-            <option>Metallic thread</option>
-          </select>
+      <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 24px;">
+        <button class="product-btn active" data-product="shirt" style="padding: 16px; border-radius: var(--r-md); border: 2px solid var(--d-border); background: var(--space-blue-700); color: var(--d-fg2); font: var(--small); cursor: pointer; transition: all 0.3s;">Shirt</button>
+        <button class="product-btn" data-product="hoodie" style="padding: 16px; border-radius: var(--r-md); border: 2px solid var(--d-border); background: var(--space-blue-700); color: var(--d-fg2); font: var(--small); cursor: pointer; transition: all 0.3s;">Hoodie</button>
+        <button class="product-btn" data-product="pants" style="padding: 16px; border-radius: var(--r-md); border: 2px solid var(--d-border); background: var(--space-blue-700); color: var(--d-fg2); font: var(--small); cursor: pointer; transition: all 0.3s;">Pants</button>
+        <button class="product-btn" data-product="hat" style="padding: 16px; border-radius: var(--r-md); border: 2px solid var(--d-border); background: var(--space-blue-700); color: var(--d-fg2); font: var(--small); cursor: pointer; transition: all 0.3s;">Hat</button>
+        <button class="product-btn" data-product="jacket" style="padding: 16px; border-radius: var(--r-md); border: 2px solid var(--d-border); background: var(--space-blue-700); color: var(--d-fg2); font: var(--small); cursor: pointer; transition: all 0.3s;">Jacket</button>
+        <button class="product-btn" data-product="bag" style="padding: 16px; border-radius: var(--r-md); border: 2px solid var(--d-border); background: var(--space-blue-700); color: var(--d-fg2); font: var(--small); cursor: pointer; transition: all 0.3s;">Bag</button>
+      </div>
+      <label style="display: block; padding: 24px; border: 2px dashed var(--d-border); border-radius: var(--r-md); text-align: center; cursor: pointer; margin-bottom: 24px; transition: all 0.3s;" onmouseover="this.style.borderColor='var(--atmosphere-blue)'" onmouseout="this.style.borderColor='var(--d-border)'">
+        <p style="font: var(--small); color: var(--d-fg3);">Drop logo here or click to upload</p>
+        <input type="file" accept="image/*" id="logo-upload" style="display: none;">
+      </label>
+      <button id="generate-mockup" style="width: 100%; padding: 16px; border-radius: var(--r-pill); background: var(--white); color: var(--space-blue); font: var(--small); font-weight: 500; border: none; cursor: pointer; transition: all 0.3s;">Generate Mockup →</button>
+    </div>
+    <div class="studio-preview" style="background: var(--space-blue-700); border-radius: var(--r-lg); border: 1px solid var(--d-border); display: flex; flex-direction: column; overflow: hidden;">
+      <div style="padding: 16px 24px; border-bottom: 1px solid var(--d-border); display: flex; align-items: center; justify-content: space-between;">
+        <span style="font: var(--small); color: var(--d-fg3);">Live Preview</span>
+        <span style="font: var(--label); letter-spacing: var(--label-tracking); text-transform: uppercase; color: var(--atmosphere-blue);">2D Flatlay</span>
+      </div>
+      <div style="flex: 1; display: flex; align-items: center; justify-content: center; padding: 48px; position: relative; background: radial-gradient(ellipse 60% 40% at 50% 50%, rgba(125,210,243,0.03) 0%, transparent 70%);">
+        <div id="studio-canvas" style="position: relative; width: 300px; height: 380px; display: flex; align-items: center; justify-content: center;">
+          <svg id="studio-garment" viewBox="0 0 400 500" style="width: 100%; height: 100%; filter: drop-shadow(0 20px 40px rgba(0,0,0,0.4));">
+            <path id="studio-path" d="M120 60 Q140 40 160 50 L200 70 L240 50 Q260 40 280 60 L340 100 L320 140 L290 120 L290 450 L110 450 L110 120 L80 140 L60 100 Z" fill="#f0f0f0"/>
+          </svg>
+          <div id="studio-logo" style="position: absolute; top: 25%; left: 50%; transform: translateX(-50%); width: 60px; height: 60px; background: var(--charcoal-gray); border-radius: 6px; display: flex; align-items: center; justify-content: center; font: var(--label); color: var(--white); cursor: move; box-shadow: 0 4px 12px rgba(0,0,0,0.3);">LOGO</div>
         </div>
-        <div class="mockup-preview">
-          <div class="mockup-garment">
-            <div class="mockup-logo">LOGO</div>
-          </div>
-        </div>
-        <div class="mockup-check">
-          <input type="checkbox" checked>
-          <span>I approve this mockup. Proceed to embroidery.</span>
-        </div>
-        <button class="mockup-btn">Confirm & Place Order →</button>
+      </div>
+      <div style="padding: 16px 24px; border-top: 1px solid var(--d-border); display: flex; align-items: center; justify-content: space-between;">
+        <span id="studio-status" style="font: var(--small); color: var(--d-fg3);">Drag logo to reposition</span>
+        <span style="font: var(--small); color: var(--d-fg3);">ArgoStitch Design Studio</span>
       </div>
     </div>
   </div>
@@ -595,41 +605,186 @@
   const logo = document.querySelector('.mockup-logo');
   const garment = document.querySelector('.mockup-garment');
 
-  const placements = {
-    chest: { top: '48px', left: '50%', transform: 'translateX(-50%)' },
-    'left sleeve': { top: '70px', left: '18px', transform: 'none' },
-    'right sleeve': { top: '70px', left: 'auto', right: '18px', transform: 'none' },
-    back: { top: '40px', left: '50%', transform: 'translateX(-50%)' },
-    sleeve: { top: '70px', left: '18px', transform: 'none' }
+  const silhouettes = {
+    shirt: 'M120 60 Q140 40 160 50 L200 70 L240 50 Q260 40 280 60 L340 100 L320 140 L290 120 L290 450 L110 450 L110 120 L80 140 L60 100 Z',
+    hoodie: 'M120 50 Q140 30 160 40 L200 60 L240 40 Q260 30 280 50 L340 90 L330 110 L310 100 L310 440 L90 440 L90 100 L70 110 L60 90 Z',
+    pants: 'M130 60 L270 60 L280 200 L300 480 L240 480 L220 280 L180 280 L160 480 L100 480 L120 200 Z',
+    hat: 'M100 180 Q100 100 200 100 Q300 100 300 180 L300 200 L100 200 Z',
+    jacket: 'M110 50 Q130 30 150 40 L200 65 L250 40 Q270 30 290 50 L350 100 L330 130 L300 110 L300 450 L100 450 L100 110 L70 130 L50 100 Z',
+    bag: 'M110 150 Q110 80 200 80 Q290 80 290 150 L310 420 L90 420 Z'
   };
 
-  function parsePlacement(text) {
+  const placementPositions = {
+    chest: { top: '25%', left: '50%', transform: 'translateX(-50%)' },
+    'left sleeve': { top: '30%', left: '12%', transform: 'none' },
+    'right sleeve': { top: '30%', right: '12%', left: 'auto', transform: 'none' },
+    back: { top: '30%', left: '50%', transform: 'translateX(-50%)' },
+    sleeve: { top: '30%', left: '12%', transform: 'none' },
+    front: { top: '40%', left: '50%', transform: 'translateX(-50%)' },
+    leg: { top: '60%', left: '50%', transform: 'translateX(-50%)' },
+    pocket: { top: '55%', left: '35%', transform: 'none' },
+    crown: { top: '35%', left: '50%', transform: 'translateX(-50%)' },
+    brim: { top: '55%', left: '50%', transform: 'translateX(-50%)' }
+  };
+
+  const productKeywords = {
+    shirt: ['shirt', 't-shirt', 'tee', 'polo', 'button', 'top'],
+    hoodie: ['hoodie', 'sweatshirt', 'sweater', 'crewneck', 'pullover'],
+    pants: ['pants', 'trousers', 'jeans', 'shorts', 'joggers', 'sweatpants'],
+    hat: ['hat', 'cap', 'beanie', 'snapback', 'dad hat', 'bucket'],
+    jacket: ['jacket', 'coat', 'bomber', 'windbreaker', 'blazer'],
+    bag: ['bag', 'tote', 'backpack', 'duffel', 'messenger']
+  };
+
+  const colorKeywords = ['white', 'black', 'navy', 'blue', 'red', 'green', 'grey', 'gray', 'beige', 'cream', 'pink', 'yellow', 'orange', 'purple', 'brown', 'camel', 'olive', 'charcoal'];
+  const sizeKeywords = ['xs', 's', 'm', 'l', 'xl', 'xxl', '2xl', '3xl'];
+  const placementKeywords = {
+    chest: ['chest', 'front', 'center'],
+    'left sleeve': ['left sleeve', 'left arm'],
+    'right sleeve': ['right sleeve', 'right arm'],
+    back: ['back', 'rear', 'spine'],
+    pocket: ['pocket', 'side'],
+    leg: ['leg', 'thigh'],
+    crown: ['crown', 'top', 'front panel'],
+    brim: ['brim', 'visor']
+  };
+
+  function parseDescription(text) {
     const lower = text.toLowerCase();
-    if (lower.includes('left sleeve')) return 'left sleeve';
-    if (lower.includes('right sleeve')) return 'right sleeve';
-    if (lower.includes('chest')) return 'chest';
-    if (lower.includes('back')) return 'back';
-    if (lower.includes('sleeve')) return 'sleeve';
-    return 'chest';
-  }
+    let product = 'shirt';
+    let color = 'White';
+    let size = 'L';
+    let placement = 'chest';
 
-  function updatePlacement(text) {
-    const placement = parsePlacement(text);
-    detectedSpan.textContent = placement.charAt(0).toUpperCase() + placement.slice(1);
-    const pos = placements[placement];
-    if (pos) {
-      logo.style.top = pos.top;
-      logo.style.left = pos.left;
-      logo.style.right = pos.right || 'auto';
-      logo.style.transform = pos.transform;
+    for (const [key, keywords] of Object.entries(productKeywords)) {
+      if (keywords.some(k => lower.includes(k))) { product = key; break; }
     }
+    for (const c of colorKeywords) {
+      if (lower.includes(c)) { color = c.charAt(0).toUpperCase() + c.slice(1); break; }
+    }
+    for (const s of sizeKeywords) {
+      if (lower.includes(' ' + s + ' ') || lower.includes('size ' + s) || lower.endsWith(' ' + s)) {
+        size = s.toUpperCase(); break;
+      }
+    }
+    for (const [key, keywords] of Object.entries(placementKeywords)) {
+      if (keywords.some(k => lower.includes(k))) { placement = key; break; }
+    }
+    return { product, color, size, placement };
   }
 
-  input.addEventListener('input', function() {
-    updatePlacement(this.value);
+  function updateStudio(parsed) {
+    const tags = document.getElementById('studio-detected');
+    tags.innerHTML = `
+      <span style="padding: 6px 14px; border-radius: var(--r-pill); background: rgba(125,210,243,0.1); border: 1px solid rgba(125,210,243,0.3); font: var(--small); color: var(--atmosphere-blue);">${parsed.product.charAt(0).toUpperCase() + parsed.product.slice(1)}</span>
+      <span style="padding: 6px 14px; border-radius: var(--r-pill); background: rgba(125,210,243,0.1); border: 1px solid rgba(125,210,243,0.3); font: var(--small); color: var(--atmosphere-blue);">${parsed.color}</span>
+      <span style="padding: 6px 14px; border-radius: var(--r-pill); background: rgba(125,210,243,0.1); border: 1px solid rgba(125,210,243,0.3); font: var(--small); color: var(--atmosphere-blue);">${parsed.placement.charAt(0).toUpperCase() + parsed.placement.slice(1)}</span>
+      <span style="padding: 6px 14px; border-radius: var(--r-pill); background: rgba(125,210,243,0.1); border: 1px solid rgba(125,210,243,0.3); font: var(--small); color: var(--atmosphere-blue);">Size ${parsed.size}</span>
+    `;
+
+    document.getElementById('studio-path').setAttribute('d', silhouettes[parsed.product] || silhouettes.shirt);
+
+    const logo = document.getElementById('studio-logo');
+    const pos = placementPositions[parsed.placement] || placementPositions.chest;
+    logo.style.top = pos.top;
+    logo.style.left = pos.left;
+    logo.style.right = pos.right || 'auto';
+    logo.style.transform = pos.transform;
+
+    document.querySelectorAll('.product-btn').forEach(btn => {
+      btn.style.borderColor = btn.dataset.product === parsed.product ? 'var(--atmosphere-blue)' : 'var(--d-border)';
+      btn.style.color = btn.dataset.product === parsed.product ? 'var(--atmosphere-blue)' : 'var(--d-fg2)';
+    });
+  }
+
+  const studioInput = document.getElementById('studio-input');
+  studioInput.addEventListener('input', function() {
+    updateStudio(parseDescription(this.value));
   });
 
-  updatePlacement(input.value);
+  document.querySelectorAll('.product-btn').forEach(btn => {
+    btn.addEventListener('click', function() {
+      const parsed = parseDescription(studioInput.value);
+      parsed.product = this.dataset.product;
+      updateStudio(parsed);
+    });
+  });
+
+  // Logo upload
+  const fileInput = document.getElementById('logo-upload');
+  const logoElement = document.getElementById('studio-logo');
+  fileInput.addEventListener('change', function(e) {
+    const file = e.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = function(event) {
+        logoElement.innerHTML = '<img src="' + event.target.result + '" style="max-width: 100%; max-height: 100%; object-fit: contain;" alt="Logo">';
+      };
+      reader.readAsDataURL(file);
+    }
+  });
+
+  // Drag to move
+  let isDragging = false;
+  let dragOffset = { x: 0, y: 0 };
+
+  logoElement.addEventListener('mousedown', function(e) {
+    isDragging = true;
+    const rect = logoElement.getBoundingClientRect();
+    dragOffset.x = e.clientX - rect.left;
+    dragOffset.y = e.clientY - rect.top;
+    logoElement.style.cursor = 'grabbing';
+  });
+
+  document.addEventListener('mousemove', function(e) {
+    if (!isDragging) return;
+    const canvas = document.getElementById('studio-canvas');
+    const canvasRect = canvas.getBoundingClientRect();
+    const x = e.clientX - canvasRect.left - dragOffset.x;
+    const y = e.clientY - canvasRect.top - dragOffset.y;
+    logoElement.style.left = x + 'px';
+    logoElement.style.top = y + 'px';
+    logoElement.style.transform = 'none';
+  });
+
+  document.addEventListener('mouseup', function() {
+    isDragging = false;
+    logoElement.style.cursor = 'move';
+  });
+
+  // Touch support
+  logoElement.addEventListener('touchstart', function(e) {
+    isDragging = true;
+    const touch = e.touches[0];
+    const rect = logoElement.getBoundingClientRect();
+    dragOffset.x = touch.clientX - rect.left;
+    dragOffset.y = touch.clientY - rect.top;
+  });
+
+  document.addEventListener('touchmove', function(e) {
+    if (!isDragging) return;
+    const touch = e.touches[0];
+    const canvas = document.getElementById('studio-canvas');
+    const canvasRect = canvas.getBoundingClientRect();
+    const x = touch.clientX - canvasRect.left - dragOffset.x;
+    const y = touch.clientY - canvasRect.top - dragOffset.y;
+    logoElement.style.left = x + 'px';
+    logoElement.style.top = y + 'px';
+    logoElement.style.transform = 'none';
+  });
+
+  document.addEventListener('touchend', function() {
+    isDragging = false;
+  });
+
+  document.getElementById('generate-mockup').addEventListener('click', function() {
+    document.getElementById('studio-status').textContent = 'Mockup generated — ready for approval';
+    setTimeout(() => {
+      document.getElementById('studio-status').textContent = 'Drag logo to reposition';
+    }, 3000);
+  });
+
+  updateStudio(parseDescription(studioInput.value));
 })();
 </script>
 
