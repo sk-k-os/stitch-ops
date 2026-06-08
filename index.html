@@ -226,6 +226,14 @@
     border: 1px solid var(--d-border); background: var(--space-blue-800);
     color: var(--white); font: var(--body);
   }
+  .mockup-detected {
+    padding: 14px 18px; border-radius: var(--r-sm);
+    border: 1px solid var(--d-border); background: var(--space-blue-800);
+    color: var(--d-fg2); font: var(--body); display: flex; align-items: center; gap: 6px;
+  }
+  .mockup-detected span {
+    color: var(--atmosphere-blue); font-weight: 500;
+  }
   .mockup-preview {
     background: var(--space-blue-800); border-radius: var(--r-sm);
     border: 1px solid var(--d-border); padding: 40px;
@@ -473,14 +481,9 @@
         <div class="mockup-title">Stitch Ops Generator</div>
       </div>
       <div class="mockup-body">
-        <input type="text" class="mockup-input" placeholder="White Hermes t-shirt, logo on left sleeve..." value="White Hermes t-shirt, logo on left sleeve">
+        <input type="text" class="mockup-input" id="generator-input" placeholder="White Hermes t-shirt, logo on left sleeve..." value="White Hermes t-shirt, logo on left sleeve">
         <div class="mockup-row">
-          <select class="mockup-select">
-            <option>Chest</option>
-            <option selected>Left Sleeve</option>
-            <option>Right Sleeve</option>
-            <option>Back</option>
-          </select>
+          <div class="mockup-detected" id="placement-detected">Placement: <span>Left Sleeve</span></div>
           <select class="mockup-select">
             <option>Standard stitch</option>
             <option>3D puff</option>
@@ -583,6 +586,52 @@
     <span>Enterprise clients only. By application.</span>
   </div>
 </footer>
+
+<script>
+(function() {
+  const input = document.getElementById('generator-input');
+  const detected = document.getElementById('placement-detected');
+  const detectedSpan = detected.querySelector('span');
+  const logo = document.querySelector('.mockup-logo');
+  const garment = document.querySelector('.mockup-garment');
+
+  const placements = {
+    chest: { top: '48px', left: '50%', transform: 'translateX(-50%)' },
+    'left sleeve': { top: '70px', left: '18px', transform: 'none' },
+    'right sleeve': { top: '70px', left: 'auto', right: '18px', transform: 'none' },
+    back: { top: '40px', left: '50%', transform: 'translateX(-50%)' },
+    sleeve: { top: '70px', left: '18px', transform: 'none' }
+  };
+
+  function parsePlacement(text) {
+    const lower = text.toLowerCase();
+    if (lower.includes('left sleeve')) return 'left sleeve';
+    if (lower.includes('right sleeve')) return 'right sleeve';
+    if (lower.includes('chest')) return 'chest';
+    if (lower.includes('back')) return 'back';
+    if (lower.includes('sleeve')) return 'sleeve';
+    return 'chest';
+  }
+
+  function updatePlacement(text) {
+    const placement = parsePlacement(text);
+    detectedSpan.textContent = placement.charAt(0).toUpperCase() + placement.slice(1);
+    const pos = placements[placement];
+    if (pos) {
+      logo.style.top = pos.top;
+      logo.style.left = pos.left;
+      logo.style.right = pos.right || 'auto';
+      logo.style.transform = pos.transform;
+    }
+  }
+
+  input.addEventListener('input', function() {
+    updatePlacement(this.value);
+  });
+
+  updatePlacement(input.value);
+})();
+</script>
 
 </body>
 </html>
