@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "name": "stitch-ops",
+  "name": "argostitch",
   "routes": [
     { "src": "/assets/(.*)", "dest": "/assets/$1" },
     { "src": "/colors_and_type.css", "dest": "/colors_and_type.css" },

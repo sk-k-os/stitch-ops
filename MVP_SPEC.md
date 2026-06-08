@@ -1,11 +1,11 @@
 ---
-name: Stitch Ops MVP Spec
+name: ArgoStitch MVP Spec
 description: Enterprise embroidery platform — MVP build specification
 date: 2026-06-07
 version: 0.1
 ---
 
-# Stitch Ops — MVP Specification
+# ArgoStitch — MVP Specification
 
 > White-glove enterprise embroidery. 24-hour turnaround. NYC only.
 > A Keel Merchant Bank Company.
@@ -387,4 +387,4 @@ draft ──▶ pending ──▶ approved ──▶ in_production ──▶ qc 
 
 ---
 
-*Stitch Ops MVP Spec v0.1 — 2026-06-07*
+*ArgoStitch MVP Spec v0.1 — 2026-06-07*
